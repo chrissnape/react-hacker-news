@@ -37,20 +37,16 @@ export default class AppComponent extends Component<Props, State> {
     const { stories, getCommentsFromIds, topStoriesGetSuccess, topStoriesGetFailure } = this.props;
     if (topStoriesGetSuccess) {
       return (
-        stories.map((story: Story) => {
+        stories.map((story: Story): JSX.Element => {
           const { by, id, kids, time, title, score } = story;
           return (
             <div className="stories__post-row" key={id}>
               <PostRow
                 title={title}
-                commentsAmount={kids ? kids.length : 0}
                 score={score}
                 dateTime={moment.unix(time).fromNow()}
                 author={by}
-                onClick={() => {
-                  this.setState({ openStoryId: id });
-                  getCommentsFromIds(kids.slice(0, 3));
-                }}
+                kids={kids}
               />
             </div>
           );
