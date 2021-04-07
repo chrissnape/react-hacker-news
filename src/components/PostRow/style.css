@@ -37,10 +37,9 @@
 }
 
 .post-row__block__text__title {
-  font-size: 1.3em;
-  font-weight: bold;
   color: purple;
   margin-bottom: 5px;
+  margin-top: 0;
   cursor: pointer;
 }
 
@@ -66,4 +65,8 @@
 
 .post-row__block__comments__label {
   font-size: 0.6em;
+}
+
+.comment-row-block {
+  margin-top: 10px;
 }

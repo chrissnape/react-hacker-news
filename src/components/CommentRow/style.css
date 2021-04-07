@@ -1,0 +1,38 @@
+.comment-row {
+  border-left: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  padding-left: 10px;
+}
+
+.comment-row__text__title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.comment-row__text__title:hover {
+  text-decoration: underline;
+}
+
+.comment-row__text__sub-title {
+  font-style: italic;
+  font-size: 0.7em;
+}
+
+.comment-row__comments {
+  text-align: center;
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.comment-row__comments__amount {
+  font-weight: bold;
+}
+
+.comment-row__comments__label {
+  font-size: 0.6em;
+}

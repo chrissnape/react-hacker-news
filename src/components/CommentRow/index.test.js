@@ -1,40 +1,34 @@
 import { render, screen } from '@testing-library/react';
-import PostRow from './index';
+import CommentRow from './index';
 
 const props = {
-  title: 'React Hacker News',
-  score: 111,
+  text: 'React Hacker Comment',
+  commentsAmount: 3,
   dateTime: '1 hour ago',
   author: 'Chris Snape',
-  kids: [222, 333, 444, 555, 666],
+  kids: [123],
 };
 
-test('renders title', () => {
-  render(<PostRow {...props} />);
-  const title = screen.getByText(props.title);
-  expect(title).toBeInTheDocument();
+test('renders text', () => {
+  render(<CommentRow {...props} />);
+  const text = screen.getByText(props.text);
+  expect(text).toBeInTheDocument();
 });
 
 test('renders amount of comments', () => {
-  render(<PostRow {...props} />);
+  render(<CommentRow {...props} />);
   const commentsAmount = screen.getByText(props.kids.length);
   expect(commentsAmount).toBeInTheDocument();
 });
 
-test('renders score', () => {
-  render(<PostRow {...props} />);
-  const score = screen.getByText(props.score);
-  expect(score).toBeInTheDocument();
-});
-
 test('renders dateTime', () => {
-  render(<PostRow {...props} />);
+  render(<CommentRow {...props} />);
   const dateTime = screen.getByText(props.dateTime);
   expect(dateTime).toBeInTheDocument();
 });
 
 test('renders name of author', () => {
-  render(<PostRow {...props} />);
+  render(<CommentRow {...props} />);
   const author = screen.getByText(props.author);
   expect(author).toBeInTheDocument();
 });
