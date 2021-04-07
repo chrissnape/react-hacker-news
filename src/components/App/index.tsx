@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import moment from 'moment';
-import { Story } from '../../utils/types';
+import { CommentType, Story } from '../../utils/types';
 import PostRow from '../PostRow';
 import './style.css';
 
 type Props = {
-  comments: Array<any>,
+  comments: Array<CommentType>,
   commentsFromIdsGetRequest: boolean,
   commentsFromIdsGetSuccess: boolean,
   commentsFromIdsGetFailure: boolean,
@@ -17,7 +17,18 @@ type Props = {
   topStoriesGetFailure: boolean,
 }
 
-export default class AppComponent extends Component<Props> {
+type State = {
+  openStoryId: number,
+}
+
+export default class AppComponent extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      openStoryId: 0,
+    };
+  }
+  
   componentDidMount() {
     this.props.getTopStories();
   }
@@ -37,6 +48,7 @@ export default class AppComponent extends Component<Props> {
                 dateTime={moment.unix(time).fromNow()}
                 author={by}
                 onClick={() => {
+                  this.setState({ openStoryId: id });
                   getCommentsFromIds(kids.slice(0, 3));
                 }}
               />
