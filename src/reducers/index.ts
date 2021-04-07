@@ -1,44 +1,83 @@
 import { AnyAction } from 'redux';
-import { POSTS_GET_REQUEST, POSTS_GET_SUCCESS, POSTS_GET_FAILURE } from '../actions';
+import { Story } from '../utils/types';
+import {
+  TOP_STORIES_GET_REQUEST, 
+  TOP_STORIES_GET_SUCCESS,
+  TOP_STORIES_GET_FAILURE,
+  COMMENTS_FROM_IDS_GET_REQUEST,
+  COMMENTS_FROM_IDS_GET_SUCCESS,
+  COMMENTS_FROM_IDS_GET_FAILURE,
+} from '../actions';
 
 type State = {
-  posts: Array<any>,
-  getPostsRequest: boolean,
-  getPostsSuccess: boolean,
-  getPostsFailure: boolean,
+  comments: Array<any>,
+  commentsFromIdsGetRequest: boolean,
+  commentsFromIdsGetSuccess: boolean,
+  commentsFromIdsGetFailure: boolean,
+  stories: Array<Story>,
+  topStoriesGetRequest: boolean,
+  topStoriesGetSuccess: boolean,
+  topStoriesGetFailure: boolean,
 };
 
 const initialState: State = {
-  posts: [],
-  getPostsRequest: false,
-  getPostsSuccess: false,
-  getPostsFailure: false,
+  comments: [],
+  commentsFromIdsGetRequest: false,
+  commentsFromIdsGetSuccess: false,
+  commentsFromIdsGetFailure: false,
+  stories: [],
+  topStoriesGetRequest: false,
+  topStoriesGetSuccess: false,
+  topStoriesGetFailure: false,
 };
 
-export default (state: State = initialState, action: AnyAction) => {
+const reducer = (state: State = initialState, action: AnyAction) => {
   switch (action.type) {
-    case POSTS_GET_REQUEST:
+    case TOP_STORIES_GET_REQUEST:
       return {
         ...state,
-        getPostsRequest: true,
+        topStoriesGetRequest: true,
       }
     
-    case POSTS_GET_SUCCESS:
+    case TOP_STORIES_GET_SUCCESS:
       return {
         ...state,
-        posts: action.posts,
-        getPostsRequest: false,
-        getPostsSuccess: true,
+        stories: action.stories,
+        topStoriesGetRequest: false,
+        topStoriesGetSuccess: true,
       }
 
-    case POSTS_GET_FAILURE:
+    case TOP_STORIES_GET_FAILURE:
       return {
         ...state,
-        getPostsRequest: false,
-        getPostsFailure: true,
+        topStoriesGetRequest: false,
+        topStoriesGetFailure: true,
+      }
+
+    case COMMENTS_FROM_IDS_GET_REQUEST:
+      return {
+        ...state,
+        commentsFromIdsGetRequest: true,
+      }
+    
+    case COMMENTS_FROM_IDS_GET_SUCCESS:
+      return {
+        ...state,
+        comments : action.comments ,
+        commentsFromIdsGetRequest: false,
+        commentsFromIdsGetSuccess: true,
+      }
+
+    case COMMENTS_FROM_IDS_GET_FAILURE:
+      return {
+        ...state,
+        commentsFromIdsGetRequest: false,
+        commentsFromIdsGetFailure: true,
       }
 
     default:
       return state
   }
 };
+
+export default reducer;

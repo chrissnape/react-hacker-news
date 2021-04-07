@@ -40,7 +40,7 @@ test('renders name of author', () => {
   expect(author).toBeInTheDocument();
 });
 
-test('fires onClick when button pressed', () => {
+test('fires onClick when title pressed', () => {
   render(<PostRow {...props} />);
-  fireEvent.click(screen.getByTestId('button'), props.onClick);
+  fireEvent.click(screen.getByTestId('title'), props.onClick);
 });

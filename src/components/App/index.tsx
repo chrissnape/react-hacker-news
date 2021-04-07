@@ -1,43 +1,67 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import moment from 'moment';
-import { Post } from '../../utils/types';
+import { Story } from '../../utils/types';
 import PostRow from '../PostRow';
 import './style.css';
 
 type Props = {
-  posts: Array<any>,
-  getPostsRequest: boolean,
-  getPostsSuccess: boolean,
-  getPostsFailure: boolean,
-  getTopPosts: Function,
+  comments: Array<any>,
+  commentsFromIdsGetRequest: boolean,
+  commentsFromIdsGetSuccess: boolean,
+  commentsFromIdsGetFailure: boolean,
+  getCommentsFromIds: Function,
+  getTopStories: Function,
+  stories: Array<Story>,
+  topStoriesGetRequest: boolean,
+  topStoriesGetSuccess: boolean,
+  topStoriesGetFailure: boolean,
 }
 
 export default class AppComponent extends Component<Props> {
   componentDidMount() {
-    this.props.getTopPosts();
+    this.props.getTopStories();
   }
 
-  render() {
-    const { posts } = this.props;
-    return (
-      <div className="posts">
-        {posts.map((post: Post) => {
-          const { title, descendants, score, time, by } = post;
+  getStoryContent = () => {
+    const { stories, getCommentsFromIds, topStoriesGetSuccess, topStoriesGetFailure } = this.props;
+    if (topStoriesGetSuccess) {
+      return (
+        stories.map((story: Story) => {
+          const { by, id, kids, time, title, score } = story;
           return (
-            <div className="posts__post-row">
+            <div className="stories__post-row" key={id}>
               <PostRow
                 title={title}
-                commentsAmount={descendants}
+                commentsAmount={kids ? kids.length : 0}
                 score={score}
                 dateTime={moment.unix(time).fromNow()}
                 author={by}
-                onClick={() => { console.log('hello') }}
+                onClick={() => {
+                  getCommentsFromIds(kids.slice(0, 3));
+                }}
               />
             </div>
           );
-        })}
+        })
+      );
+    }
+    if (topStoriesGetFailure) {
+      return (
+        <span>Failed to fetch top stories</span>
+      );
+    }
+    return (
+      <span>Loading...</span>
+    );
+  }
+
+  render() {
+    return (
+      <div className="page">
+        <div className="stories">
+          {this.getStoryContent()}
+        </div>
       </div>
     );
   }
 };
-
