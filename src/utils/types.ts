@@ -16,7 +16,7 @@ export type Post = {
   descendants: number,
 };
 
-export interface Comment extends Post {
+export interface CommentType extends Post {
   parent: number,
   text: string,
 };
