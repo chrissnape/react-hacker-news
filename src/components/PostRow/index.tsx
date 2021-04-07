@@ -26,7 +26,7 @@ const PostRowComponent: FC<Props> = ({title, commentsAmount, score, dateTime, au
           {title}
         </div>
         <div className="post-row__block__text__sub-title">
-          {dateTime} - by {author}
+          <span>{dateTime}</span> - by <span>{author}</span>
         </div>
       </div>
       <div className="post-row__block__comments">

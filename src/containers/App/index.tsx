@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import App from '../../components/App';
 import { AppState } from '../../store';
-import { getTopPosts as getTopPostsAction } from '../../actions';
+import {
+  getCommentsFromIds as getCommentsFromIdsAction,
+  getTopStories as getTopStoriesAction,
+} from '../../actions';
 
 const mapStateToProps = (state: AppState) => {
   const { posts } = state;
@@ -10,7 +13,8 @@ const mapStateToProps = (state: AppState) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getTopPosts: () => getTopPostsAction(dispatch),
+  getCommentsFromIds: (ids: Array<number>) => getCommentsFromIdsAction(dispatch, ids),
+  getTopStories: () => getTopStoriesAction(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
