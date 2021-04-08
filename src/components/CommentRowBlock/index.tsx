@@ -69,5 +69,7 @@ export default class CommentsRowBlockComponent extends Component<Props, State> {
     )
   }
 
-  render = () =>this.renderComments();
+  render = () => (
+    <div className="comment-row-block">{this.renderComments()}</div>
+  );
 };

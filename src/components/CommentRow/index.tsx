@@ -15,20 +15,21 @@ const CommentRowComponent: FC<Props> = ({text, dateTime, author, kids}) => {
     <Fragment>
       <div className="comment-row">
         <div className="comment-row__text">
-          <div
-            className="comment-row__text__title"
-            data-testid="text"
-            onClick={() => {
-              if (kids && kids.length > 0) {
-                setIsOpen(!isOpen);
-              }
-            }}
-          >
-            <div dangerouslySetInnerHTML={{__html: text}} />
-          </div>
           <div className="comment-row__text__sub-title">
             <span>{dateTime}</span> - by <span>{author}</span>
           </div>
+          <div className="comment-row__text__html">
+            <div dangerouslySetInnerHTML={{__html: text}} />
+          </div>
+          {(kids && kids.length > 0) && (
+            <div
+              className="comment-row__text__continue"
+              data-testid="text"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {!isOpen ? 'Read comments' : 'Close'}
+            </div>
+          )}
         </div>
         <div className="comment-row__comments">
           <div className="comment-row__comments__amount">

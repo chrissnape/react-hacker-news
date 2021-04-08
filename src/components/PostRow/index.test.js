@@ -7,6 +7,7 @@ const props = {
   dateTime: '1 hour ago',
   author: 'Chris Snape',
   kids: [222, 333, 444, 555, 666],
+  url: 'https://www.bbc.co.uk/news',
 };
 
 test('renders title', () => {

@@ -1,15 +1,10 @@
 import { Component } from 'react';
 import moment from 'moment';
-import { CommentType, Story } from '../../utils/types';
+import { Story } from '../../utils/types';
 import PostRow from '../PostRow';
 import './style.css';
 
 type Props = {
-  comments: Array<CommentType>,
-  commentsFromIdsGetRequest: boolean,
-  commentsFromIdsGetSuccess: boolean,
-  commentsFromIdsGetFailure: boolean,
-  getCommentsFromIds: Function,
   getTopStories: Function,
   stories: Array<Story>,
   topStoriesGetRequest: boolean,
@@ -34,11 +29,11 @@ export default class AppComponent extends Component<Props, State> {
   }
 
   getStoryContent = () => {
-    const { stories, getCommentsFromIds, topStoriesGetSuccess, topStoriesGetFailure } = this.props;
+    const { stories, topStoriesGetSuccess, topStoriesGetFailure } = this.props;
     if (topStoriesGetSuccess) {
       return (
         stories.map((story: Story): JSX.Element => {
-          const { by, id, kids, time, title, score } = story;
+          const { by, id, kids, score, time, title, url } = story;
           return (
             <div className="stories__post-row" key={id}>
               <PostRow
@@ -47,6 +42,7 @@ export default class AppComponent extends Component<Props, State> {
                 dateTime={moment.unix(time).fromNow()}
                 author={by}
                 kids={kids}
+                url={url}
               />
             </div>
           );
