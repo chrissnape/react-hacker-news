@@ -6,19 +6,21 @@
   padding-left: 10px;
 }
 
-.comment-row__text__title {
-  font-weight: bold;
-  margin-bottom: 5px;
-  cursor: pointer;
-}
-
-.comment-row__text__title:hover {
-  text-decoration: underline;
-}
-
 .comment-row__text__sub-title {
   font-style: italic;
   font-size: 0.7em;
+  margin-bottom: 10px;
+}
+
+.comment-row__text__continue {
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-top: 20px;
+} 
+
+.comment-row__text__continue:hover {
+  text-decoration: underline;
 }
 
 .comment-row__comments {

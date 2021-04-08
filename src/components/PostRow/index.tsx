@@ -8,9 +8,10 @@ type Props = {
   dateTime: string,
   author: string,
   kids: Array<number>,
+  url: string,
 }
 
-const PostRowComponent: FC<Props> = ({title, score, dateTime, author, kids}) => {
+const PostRowComponent: FC<Props> = ({title, score, dateTime, author, kids, url}) => {
   const [isOpen, setIsOpen] = useState<boolean>();
   return (
     <Fragment>
@@ -51,10 +52,15 @@ const PostRowComponent: FC<Props> = ({title, score, dateTime, author, kids}) => 
         </div>
       </div>
       {isOpen && (
-        <div className="comment-row-block">
-          <CommentRowBlock ids={kids.slice(0, 3)}/></div>
-        )
-      }
+        <Fragment>
+          <div className="post-row__content">
+            <div className="post-row__url">
+              <a href={url} target="_blank">{url}</a>
+            </div>
+            <CommentRowBlock ids={kids.slice(0, 3)}/>
+          </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 }

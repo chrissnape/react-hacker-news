@@ -1,23 +1,5 @@
 import { Dispatch } from 'redux';
-import { CommentType, Story } from '../utils/types';
-
-export const COMMENTS_FROM_IDS_GET_REQUEST = 'COMMENTS_FROM_IDS_GET_REQUEST';
-export const COMMENTS_FROM_IDS_GET_SUCCESS = 'COMMENTS_FROM_IDS_GET_SUCCESS';
-export const COMMENTS_FROM_IDS_GET_FAILURE = 'COMMENTS_FROM_IDS_GET_FAILURE';
-export const getCommentsFromIds = async (dispatch: Dispatch, ids: Array<number>) => {
-  dispatch({ type: COMMENTS_FROM_IDS_GET_REQUEST });
-  const comments: Array<CommentType> = [];
-  for (const id of ids) {
-    await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-      .then((res: Response) => res.json())
-      .then((comment: CommentType) => comments.push(comment))
-      .catch((err: string) => {
-        console.log(err);
-        dispatch({ type: COMMENTS_FROM_IDS_GET_FAILURE });
-      });
-  }
-  dispatch({ type: COMMENTS_FROM_IDS_GET_SUCCESS, comments });
-};
+import { Story } from '../utils/types';
 
 export const TOP_STORIES_GET_REQUEST = 'TOP_STORIES_GET_REQUEST';
 export const TOP_STORIES_GET_SUCCESS = 'TOP_STORIES_GET_SUCCESS';

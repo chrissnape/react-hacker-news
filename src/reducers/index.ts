@@ -4,16 +4,9 @@ import {
   TOP_STORIES_GET_REQUEST, 
   TOP_STORIES_GET_SUCCESS,
   TOP_STORIES_GET_FAILURE,
-  COMMENTS_FROM_IDS_GET_REQUEST,
-  COMMENTS_FROM_IDS_GET_SUCCESS,
-  COMMENTS_FROM_IDS_GET_FAILURE,
 } from '../actions';
 
 type State = {
-  comments: Array<any>,
-  commentsFromIdsGetRequest: boolean,
-  commentsFromIdsGetSuccess: boolean,
-  commentsFromIdsGetFailure: boolean,
   stories: Array<Story>,
   topStoriesGetRequest: boolean,
   topStoriesGetSuccess: boolean,
@@ -21,10 +14,6 @@ type State = {
 };
 
 const initialState: State = {
-  comments: [],
-  commentsFromIdsGetRequest: false,
-  commentsFromIdsGetSuccess: false,
-  commentsFromIdsGetFailure: false,
   stories: [],
   topStoriesGetRequest: false,
   topStoriesGetSuccess: false,
@@ -52,27 +41,6 @@ const reducer = (state: State = initialState, action: AnyAction) => {
         ...state,
         topStoriesGetRequest: false,
         topStoriesGetFailure: true,
-      }
-
-    case COMMENTS_FROM_IDS_GET_REQUEST:
-      return {
-        ...state,
-        commentsFromIdsGetRequest: true,
-      }
-    
-    case COMMENTS_FROM_IDS_GET_SUCCESS:
-      return {
-        ...state,
-        comments : action.comments ,
-        commentsFromIdsGetRequest: false,
-        commentsFromIdsGetSuccess: true,
-      }
-
-    case COMMENTS_FROM_IDS_GET_FAILURE:
-      return {
-        ...state,
-        commentsFromIdsGetRequest: false,
-        commentsFromIdsGetFailure: true,
       }
 
     default:

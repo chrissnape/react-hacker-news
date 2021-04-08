@@ -24,4 +24,5 @@ export interface CommentType extends Post {
 export interface Story extends Post {
   score: number,
   title: string,
+  url: string,
 };
